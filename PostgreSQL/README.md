@@ -50,11 +50,5 @@ adjusted for each instance accordingly.  There are 4 settings:
 
 The Discovery rule for this is based on the WARN levels:
 
-  if FreeSpace > ${BLOAT_WARN_BYTES} OR PercentFree > ${BLOAT_WARN_PERCENT}
-
-But, the alerts are based on *AND* for each.  The idea is that if either the
-BYTES or PERCENT raises above either threshold, you start to get some graphing so 
-that when WARN alert is triggered, you can get an idea of how fast it is rising, or
-if it is holding pretty stable.
-
+  if FreeSpace > ${BLOAT_WARN_BYTES} AND PercentFree > ${BLOAT_WARN_PERCENT}
 
