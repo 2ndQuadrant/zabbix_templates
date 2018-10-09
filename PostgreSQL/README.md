@@ -38,7 +38,7 @@ and that is {$ACTIVE_DB}, which is the database whose tables / indexes / etc you
 specifically monitoring fow what is listed below.  If you do not set that value, the 
 tests below will not work.
 
-## Bloat Monitoring
+## Bloat Monitoring ( see: [Autovacuum Tuning Basics](https://blog.2ndquadrant.com/autovacuum-tuning-basics/)
 
 The thresholds for Bloat Monitoring are set within the Template Macros, and can be
 adjusted for each instance accordingly.  There are 4 settings:
