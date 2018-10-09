@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2018-10-08T23:11:43Z</date>
+    <date>2018-10-09T21:08:23Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -29,6 +29,9 @@
                 </application>
                 <application>
                     <name>Connections</name>
+                </application>
+                <application>
+                    <name>Database: Autovacuum Freeze</name>
                 </application>
                 <application>
                     <name>Databases</name>
@@ -1732,6 +1735,47 @@
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
+                    <key>pgsql.setting[{$PG_CONNINFO},autovacuum_freeze_max_age]</key>
+                    <delay>21600</delay>
+                    <history>30d</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>https://www.postgresql.org/docs/9.6/static/runtime-config-autovacuum.html#GUC-AUTOVACUUM-FREEZE-MAX-AGE</description>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Configuration</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <master_item/>
+                </item>
+                <item>
+                    <name>$2</name>
+                    <type>7</type>
+                    <snmp_community/>
+                    <snmp_oid/>
                     <key>pgsql.setting[{$PG_CONNINFO},fsync]</key>
                     <delay>21600</delay>
                     <history>30d</history>
@@ -2341,6 +2385,142 @@
                     <description>PostgreSQL database discovery. Use regular expressions to configure search.</description>
                     <item_prototypes>
                         <item_prototype>
+                            <name>{#DBNAME}: age(datfrozenxid)</name>
+                            <type>18</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>autovac_freeze_max_age.txns[{#DBNAME}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>https://www.postgresql.org/docs/9.6/static/runtime-config-autovacuum.html#GUC-AUTOVACUUM-FREEZE-MAX-AGE</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Database: Autovacuum Freeze</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>12</type>
+                                    <params>$.TXNS</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype>
+                                <key>pgsql.db.autovac_freeze[{$PG_CONNINFO},{#DBNAME}]</key>
+                            </master_item_prototype>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBNAME}: age(datfrozenxid) (%)</name>
+                            <type>18</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>autovac_freeze_max_age.txns_percent[{#DBNAME}]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>https://www.postgresql.org/docs/9.6/static/runtime-config-autovacuum.html#GUC-AUTOVACUUM-FREEZE-MAX-AGE</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Database: Autovacuum Freeze</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>12</type>
+                                    <params>$.TXNS_PERCENT</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype>
+                                <key>pgsql.db.autovac_freeze[{$PG_CONNINFO},{#DBNAME}]</key>
+                            </master_item_prototype>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Get Autovacuum Freeze: {#DBNAME}</name>
+                            <type>7</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>pgsql.db.autovac_freeze[{$PG_CONNINFO},{#DBNAME}]</key>
+                            <delay>60s</delay>
+                            <history>90d</history>
+                            <trends>0</trends>
+                            <status>0</status>
+                            <value_type>4</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
                             <name>database {#DBNAME} size</name>
                             <type>7</type>
                             <snmp_community/>
@@ -2383,7 +2563,40 @@
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
-                    <trigger_prototypes/>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template PostgreSQL:autovac_freeze_max_age.txns_percent[{#DBNAME}].last()}&gt;={$AUTOVAC_FREEZE_AGE_WARN_PERCENT} and {Template PostgreSQL:autovac_freeze_max_age.txns_percent[{#DBNAME}].last()}&lt;{$AUTOVAC_FREEZE_AGE_CRITICAL_PERCENT}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Autovacuum Freeze &gt; 90%</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>2</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template PostgreSQL:autovac_freeze_max_age.txns_percent[{#DBNAME}].last()}&gt;={$AUTOVAC_FREEZE_AGE_CRITICAL_PERCENT}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Autovacuum Freeze &gt; 95%</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
                             <name>PostgreSQL: database {#DBNAME} size</name>
@@ -2710,7 +2923,7 @@ host zabbix postgres 1.2.3.4/32 trust</description>
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>1d</lifetime>
+                    <lifetime>1h</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
@@ -4697,6 +4910,14 @@ Disabled by default because may add too many items.</description>
             </discovery_rules>
             <httptests/>
             <macros>
+                <macro>
+                    <macro>{$AUTOVAC_FREEZE_AGE_CRITICAL_PERCENT}</macro>
+                    <value>95</value>
+                </macro>
+                <macro>
+                    <macro>{$AUTOVAC_FREEZE_AGE_WARN_PERCENT}</macro>
+                    <value>90</value>
+                </macro>
                 <macro>
                     <macro>{$BLOAT_CRITICAL_BYTES}</macro>
                     <value>4294967296</value>
