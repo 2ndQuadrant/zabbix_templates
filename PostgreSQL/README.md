@@ -52,3 +52,12 @@ The Discovery rule for this is based on the WARN levels:
 
   if FreeSpace > ${BLOAT_WARN_BYTES} AND PercentFree > ${BLOAT_WARN_PERCENT}
 
+## Autovacuum Freeze Age 
+
+The thresholds for Autovacuum Freeze Age Monitoring are set within the Template 
+Macros, and can be adjusted for each instance accordingly.  There are 4 settings:
+
+- ${AUTOVAC_FREEZE_AGE_CRITICAL_PERCENT}
+- ${AUTOVAC_FREEZE_AGE_CRITICAL_PERCENT}
+
+This monitor is at the database level.
