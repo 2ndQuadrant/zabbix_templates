@@ -4,6 +4,10 @@ When building this template, attempts are being made to allow it
 to be run as a 'regular user', but there may be some features that
 it makes use of that will not work in certain environments.
 
+# Installation
+
+Please install custom user parameters according to your PostgreSQL version from this repository to your agent.
+
 Optimally, the following steps can be performed to get a fully working
 monitor in place:
 
